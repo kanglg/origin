@@ -1,4 +1,0 @@
-#Auto Configuration
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.shanxinj.config.WebMvcConfig,\
-com.shanxinj.config.ShiroConfig
