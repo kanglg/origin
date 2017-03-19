@@ -1,0 +1,11 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<!--/*@thymesVar id="user" type="kanglg.auth.entity.BSysUser"*/-->
+<p th:text="'Hello！, ' + ${user.userName} + '!'" >欢迎</p>
+</body>
+</html>

@@ -12,6 +12,7 @@
         <module>springboot</module>
         <module>auth</module>
         <module>workflow</module>
+        <module>webapp</module>
     </modules>
 
     <properties>
