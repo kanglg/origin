@@ -11,8 +11,8 @@
         <properties>
             <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/webapp"/>
             <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-            <property name="eclipselink.jdbc.user" value=""/>
-            <property name="eclipselink.jdbc.password" value=""/>
+            <property name="eclipselink.jdbc.user" value="kanglg"/>
+            <property name="eclipselink.jdbc.password" value="kanglg"/>
         </properties>
     </persistence-unit>
 </persistence>
