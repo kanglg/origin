@@ -2,6 +2,7 @@ package com.shanxinj.login.web;
 
 import com.shanxinj.auth.annotation.CurrentUser;
 import com.shanxinj.auth.entity.BSysUser;
+import org.activiti.engine.IdentityService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -25,17 +26,19 @@ public class IndexController{
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
     private final RuntimeService runtimeService;
     private final TaskService taskService;
+    private final IdentityService identityService;
 
     @Autowired
-    public IndexController(RuntimeService runtimeService, TaskService taskService) {
+    public IndexController(RuntimeService runtimeService, TaskService taskService, IdentityService identityService) {
         this.runtimeService = runtimeService;
         this.taskService = taskService;
+        this.identityService = identityService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model, @CurrentUser BSysUser user) {
-        List<ProcessInstance> processInstances = runtimeService.createProcessInstanceQuery().processInstanceId("oneTaskProcess").list();
-        logger.info("启动");
+        List<ProcessInstance> processInstances = runtimeService.createProcessInstanceQuery().processDefinitionId("oneTaskProcess").list();
+        logger.info("启动...");
         model.addAttribute("user", user);
         model.addAttribute("processInstances", processInstances);
         return "index";
