@@ -21,7 +21,7 @@ import java.util.List;
  * Created by kanglg on 2017/3/10.
  */
 @Controller
-@RequestMapping("/index")
+@RequestMapping({"/index", "/"})
 public class IndexController{
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
     private final RuntimeService runtimeService;

@@ -8,8 +8,6 @@ import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
-import org.apache.shiro.web.filter.authc.UserFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Value;
@@ -82,20 +80,20 @@ public class ShiroConfig {
     }
 
     @Bean("shiroFilter")
-    public ShiroFilterFactoryBean getShiroFilter(FormAuthenticationFilter formAuthenticationFilter, UserFilter userFilter, SysUserFilter sysUserFilter, DefaultWebSecurityManager securityManager) {
+    public ShiroFilterFactoryBean getShiroFilter(SysUserFilter sysUserFilter, DefaultWebSecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         Map<String, Filter> filterMap = Maps.newHashMap();
         filterMap.put("sysUser", sysUserFilter);
-        filterMap.put("user", userFilter);
-        filterMap.put("authc", formAuthenticationFilter);
         shiroFilterFactoryBean.setFilters(filterMap);
         Map<String, String> filterChainDefinitionMap = Maps.newHashMap();
-        filterChainDefinitionMap.put("/**", "user,sysUser");
         filterChainDefinitionMap.put("/register", "anon");
         filterChainDefinitionMap.put("/login", "authc");
         filterChainDefinitionMap.put("/logout", "logout");
+        filterChainDefinitionMap.put("/**", "user,sysUser");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+        shiroFilterFactoryBean.setLoginUrl("/login");
+        shiroFilterFactoryBean.setSuccessUrl("/");
         return shiroFilterFactoryBean;
     }
 
@@ -109,22 +107,22 @@ public class ShiroConfig {
         return bean;
     }
 
-    @Bean
-    public FormAuthenticationFilter formAuthenticationFilter() {
-        FormAuthenticationFilter filter = new FormAuthenticationFilter();
-        filter.setLoginUrl("/login");
-        filter.setPasswordParam("password");
-        filter.setUsernameParam("username");
-        filter.setSuccessUrl("/index");
-        return filter;
-    }
+//    @Bean
+//    public FormAuthenticationFilter formAuthenticationFilter() {
+//        FormAuthenticationFilter filter = new FormAuthenticationFilter();
+//        filter.setLoginUrl("/login");
+//        filter.setPasswordParam("password");
+//        filter.setUsernameParam("username");
+////        filter.setSuccessUrl("/index");
+//        return filter;
+//    }
 
-    @Bean
-    public UserFilter userFilter() {
-        UserFilter userFilter = new UserFilter();
-        userFilter.setLoginUrl("/login");
-        return userFilter;
-    }
+//    @Bean
+//    public UserFilter userFilter() {
+//        UserFilter userFilter = new UserFilter();
+//        userFilter.setLoginUrl("/login");
+//        return userFilter;
+//    }
 
     @Bean
     public SysUserFilter sysUserFilter(UserService userService) {
