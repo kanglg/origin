@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by kanglg on 2017/3/10.
  */
 @Controller
-@RequestMapping("/login")
 public class LoginController {
 //    @RequestMapping(method = RequestMethod.POST)
 //    public String login(String username, String password) {
@@ -18,7 +17,7 @@ public class LoginController {
 //        subject.login(token);
 //        return "redirect:/index";
 //    }
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String index() {
         return "login";
     }
