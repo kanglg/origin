@@ -107,23 +107,6 @@ public class ShiroConfig {
         return bean;
     }
 
-//    @Bean
-//    public FormAuthenticationFilter formAuthenticationFilter() {
-//        FormAuthenticationFilter filter = new FormAuthenticationFilter();
-//        filter.setLoginUrl("/login");
-//        filter.setPasswordParam("password");
-//        filter.setUsernameParam("username");
-////        filter.setSuccessUrl("/index");
-//        return filter;
-//    }
-
-//    @Bean
-//    public UserFilter userFilter() {
-//        UserFilter userFilter = new UserFilter();
-//        userFilter.setLoginUrl("/login");
-//        return userFilter;
-//    }
-
     @Bean
     public SysUserFilter sysUserFilter(UserService userService) {
         return new SysUserFilter(userService);

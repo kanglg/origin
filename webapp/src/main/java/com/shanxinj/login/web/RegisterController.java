@@ -26,7 +26,7 @@ public class RegisterController {
     @RequestMapping(method = RequestMethod.GET)
     public String index(@CurrentUser BSysUser user, Model model) {
         model.addAttribute("user", user);
-        return "register";
+        return "webapp/register";
     }
 
     @RequestMapping(method = RequestMethod.POST)

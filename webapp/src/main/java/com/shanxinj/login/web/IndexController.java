@@ -38,9 +38,9 @@ public class IndexController{
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model, @CurrentUser BSysUser user) {
         List<ProcessInstance> processInstances = runtimeService.createProcessInstanceQuery().processDefinitionId("oneTaskProcess").list();
-        logger.info("启动...");
+        logger.info("首页登陆...");
         model.addAttribute("user", user);
         model.addAttribute("processInstances", processInstances);
-        return "index";
+        return "webapp/index";
     }
 }
