@@ -6,4 +6,6 @@ package com.shanxinj.auth;
  */
 public class Constants {
     public static final String CURRENT_USER = "user";
+    public static final Byte BYTE_TRUE = Byte.parseByte("1");
+    public static final Byte BYTE_FALSE = Byte.parseByte("0");
 }

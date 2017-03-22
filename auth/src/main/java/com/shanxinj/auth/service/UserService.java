@@ -1,5 +1,6 @@
 package com.shanxinj.auth.service;
 
+import com.shanxinj.auth.Constants;
 import com.shanxinj.auth.entity.SysUser;
 import com.shanxinj.auth.repository.ResRepository;
 import com.shanxinj.auth.repository.RoleRepository;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
 
@@ -75,6 +77,8 @@ public class UserService {
     public SysUser addUser(SysUser user) {
         user.setUserId(RandomUtils.uuid());
         user.setPassword(EndecryptUtils.MD5Password(user.getPassword(), user.getUsername()));
+        user.setAvl(Constants.BYTE_TRUE);
+        user.setCreDate(new Timestamp(System.currentTimeMillis()));
         return userRepository.save(user);
     }
 
