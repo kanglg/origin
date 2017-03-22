@@ -3,15 +3,16 @@ package com.shanxinj.auth.entity;
 import javax.persistence.*;
 
 /**
- * Created by kanglg on 2017/3/19.
+ * Created by kanglg on 2017/3/21.
  */
 @Entity
-@Table(name = "b_sys_role", schema = "webapp", catalog = "")
-public class BSysRole {
+@Table(name = "sys_role", schema = "origin")
+public class SysRole {
     private String roleId;
     private String roleName;
     private String remark;
-    private Byte available;
+    private Byte avl;
+    private String roleNo;
 
     @Id
     @Column(name = "ROLE_ID")
@@ -44,13 +45,23 @@ public class BSysRole {
     }
 
     @Basic
-    @Column(name = "AVAILABLE")
-    public Byte getAvailable() {
-        return available;
+    @Column(name = "AVL")
+    public Byte getAvl() {
+        return avl;
     }
 
-    public void setAvailable(Byte available) {
-        this.available = available;
+    public void setAvl(Byte avl) {
+        this.avl = avl;
+    }
+
+    @Basic
+    @Column(name = "ROLE_NO")
+    public String getRoleNo() {
+        return roleNo;
+    }
+
+    public void setRoleNo(String roleNo) {
+        this.roleNo = roleNo;
     }
 
     @Override
@@ -58,12 +69,13 @@ public class BSysRole {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BSysRole bSysRole = (BSysRole) o;
+        SysRole sysRole = (SysRole) o;
 
-        if (roleId != null ? !roleId.equals(bSysRole.roleId) : bSysRole.roleId != null) return false;
-        if (roleName != null ? !roleName.equals(bSysRole.roleName) : bSysRole.roleName != null) return false;
-        if (remark != null ? !remark.equals(bSysRole.remark) : bSysRole.remark != null) return false;
-        if (available != null ? !available.equals(bSysRole.available) : bSysRole.available != null) return false;
+        if (roleId != null ? !roleId.equals(sysRole.roleId) : sysRole.roleId != null) return false;
+        if (roleName != null ? !roleName.equals(sysRole.roleName) : sysRole.roleName != null) return false;
+        if (remark != null ? !remark.equals(sysRole.remark) : sysRole.remark != null) return false;
+        if (avl != null ? !avl.equals(sysRole.avl) : sysRole.avl != null) return false;
+        if (roleNo != null ? !roleNo.equals(sysRole.roleNo) : sysRole.roleNo != null) return false;
 
         return true;
     }
@@ -73,7 +85,8 @@ public class BSysRole {
         int result = roleId != null ? roleId.hashCode() : 0;
         result = 31 * result + (roleName != null ? roleName.hashCode() : 0);
         result = 31 * result + (remark != null ? remark.hashCode() : 0);
-        result = 31 * result + (available != null ? available.hashCode() : 0);
+        result = 31 * result + (avl != null ? avl.hashCode() : 0);
+        result = 31 * result + (roleNo != null ? roleNo.hashCode() : 0);
         return result;
     }
 }

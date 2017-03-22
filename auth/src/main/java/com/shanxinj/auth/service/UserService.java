@@ -1,9 +1,9 @@
 package com.shanxinj.auth.service;
 
-import com.shanxinj.auth.entity.BSysUser;
-import com.shanxinj.auth.repository.ResDao;
-import com.shanxinj.auth.repository.RoleDao;
-import com.shanxinj.auth.repository.UserDao;
+import com.shanxinj.auth.entity.SysUser;
+import com.shanxinj.auth.repository.ResRepository;
+import com.shanxinj.auth.repository.RoleRepository;
+import com.shanxinj.auth.repository.UserRepository;
 import com.shanxinj.utils.EndecryptUtils;
 import com.shanxinj.utils.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +20,15 @@ import java.util.Set;
 @Service
 @Transactional
 public class UserService {
-    private final UserDao userDao;
-    private final RoleDao roleDao;
-    private final ResDao resDao;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final ResRepository resRepository;
 
     @Autowired
-    public UserService(UserDao userDao, RoleDao roleDao, ResDao resDao) {
-        this.userDao = userDao;
-        this.roleDao = roleDao;
-        this.resDao = resDao;
+    public UserService(UserRepository userRepository, RoleRepository roleRepository, ResRepository resRepository) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.resRepository = resRepository;
     }
 
     /**
@@ -36,35 +36,35 @@ public class UserService {
      * @param id ID
      * @return 用户
      */
-    public BSysUser findUser(String id) {
-        return userDao.findOne(id);
+    public SysUser findUser(String id) {
+        return userRepository.findOne(id);
     }
 
     /**
      * 根据账户名查找用户
-     * @param account 账户名
+     * @param username 账户名
      * @return 用户
      */
-    public BSysUser findUserByAccount(String account) {
-        return userDao.findByUserAccount(account);
+    public SysUser findUserByAccount(String username) {
+        return userRepository.findByUsername(username);
     }
 
     /**
      * 根据账号查找用户角色集合
-     * @param account 账号名
+     * @param username 账号名
      * @return 角色集合
      */
-    public Set<String> findRoles(String account) {
-        return roleDao.findByAccount(account);
+    public Set<String> findRoles(String username) {
+        return roleRepository.findByUsername(username);
     }
 
     /**
      * 根据账号查找用户权限描述
-     * @param account 账号名
+     * @param username 账号名
      * @return 权限描述集合
      */
-    public Set<String> findPermissions(String account) {
-        return resDao.findPermissionByAccount(account);
+    public Set<String> findPermissions(String username) {
+        return resRepository.findPrmtByUsername(username);
     }
 
     /**
@@ -72,13 +72,13 @@ public class UserService {
      * @param user 用户
      * @return 持久化用户
      */
-    public BSysUser addUser(BSysUser user) {
+    public SysUser addUser(SysUser user) {
         user.setUserId(RandomUtils.uuid());
-        user.setUserPassword(EndecryptUtils.MD5Password(user.getUserPassword(), user.getUserAccount()));
-        return userDao.save(user);
+        user.setPassword(EndecryptUtils.MD5Password(user.getPassword(), user.getUsername()));
+        return userRepository.save(user);
     }
 
-    public List<BSysUser> findAll() {
-        return (List<BSysUser>) userDao.findAll();
+    public List<SysUser> findAll() {
+        return (List<SysUser>) userRepository.findAll();
     }
 }

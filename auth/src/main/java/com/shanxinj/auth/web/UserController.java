@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * User
@@ -24,6 +25,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET)
     public List index() {
+        Set set = userService.findPermissions("admin");
         return userService.findAll();
     }
 }

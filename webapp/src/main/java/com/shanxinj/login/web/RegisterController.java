@@ -1,7 +1,7 @@
 package com.shanxinj.login.web;
 
 import com.shanxinj.auth.annotation.CurrentUser;
-import com.shanxinj.auth.entity.BSysUser;
+import com.shanxinj.auth.entity.SysUser;
 import com.shanxinj.auth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,17 +24,16 @@ public class RegisterController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String index(@CurrentUser BSysUser user, Model model) {
+    public String index(@CurrentUser SysUser user, Model model) {
         model.addAttribute("user", user);
         return "webapp/register";
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String create(String username, String password) {
-        BSysUser user = new BSysUser();
-        user.setUserName(username);
-        user.setUserAccount(username);
-        user.setUserPassword(password);
+        SysUser user = new SysUser();
+        user.setUsername(username);
+        user.setPassword(password);
         userService.addUser(user);
         return "redirect:/login";
     }

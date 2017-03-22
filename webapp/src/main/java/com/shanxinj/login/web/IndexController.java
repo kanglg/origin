@@ -1,7 +1,7 @@
 package com.shanxinj.login.web;
 
 import com.shanxinj.auth.annotation.CurrentUser;
-import com.shanxinj.auth.entity.BSysUser;
+import com.shanxinj.auth.entity.SysUser;
 import org.activiti.engine.IdentityService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
@@ -36,7 +36,7 @@ public class IndexController{
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String index(Model model, @CurrentUser BSysUser user) {
+    public String index(Model model, @CurrentUser SysUser user) {
         List<ProcessInstance> processInstances = runtimeService.createProcessInstanceQuery().processDefinitionId("oneTaskProcess").list();
         logger.info("首页登陆...");
         model.addAttribute("user", user);

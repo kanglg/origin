@@ -1,30 +1,18 @@
 package com.shanxinj.auth.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
- * Created by kanglg on 2017/3/19.
+ * Created by kanglg on 2017/3/21.
  */
-@Entity
-@Table(name = "b_sys_role_res_rel", schema = "webapp", catalog = "")
-@IdClass(BSysRoleResRelPK.class)
-public class BSysRoleResRel {
-    private String permision;
+public class SysRoleResRelPK implements Serializable {
     private String roleId;
     private String resId;
 
-    @Basic
-    @Column(name = "PERMISION")
-    public String getPermision() {
-        return permision;
-    }
-
-    public void setPermision(String permision) {
-        this.permision = permision;
-    }
-
-    @Id
     @Column(name = "ROLE_ID")
+    @Id
     public String getRoleId() {
         return roleId;
     }
@@ -33,8 +21,8 @@ public class BSysRoleResRel {
         this.roleId = roleId;
     }
 
-    @Id
     @Column(name = "RES_ID")
+    @Id
     public String getResId() {
         return resId;
     }
@@ -48,9 +36,8 @@ public class BSysRoleResRel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BSysRoleResRel that = (BSysRoleResRel) o;
+        SysRoleResRelPK that = (SysRoleResRelPK) o;
 
-        if (permision != null ? !permision.equals(that.permision) : that.permision != null) return false;
         if (roleId != null ? !roleId.equals(that.roleId) : that.roleId != null) return false;
         if (resId != null ? !resId.equals(that.resId) : that.resId != null) return false;
 
@@ -59,8 +46,7 @@ public class BSysRoleResRel {
 
     @Override
     public int hashCode() {
-        int result = permision != null ? permision.hashCode() : 0;
-        result = 31 * result + (roleId != null ? roleId.hashCode() : 0);
+        int result = roleId != null ? roleId.hashCode() : 0;
         result = 31 * result + (resId != null ? resId.hashCode() : 0);
         return result;
     }

@@ -1,19 +1,18 @@
 package com.shanxinj.auth.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
- * Created by kanglg on 2017/3/19.
+ * Created by kanglg on 2017/3/21.
  */
-@Entity
-@Table(name = "b_sys_user_role_rel", schema = "webapp", catalog = "")
-@IdClass(BSysUserRoleRelPK.class)
-public class BSysUserRoleRel {
+public class SysUserRoleRelPK implements Serializable {
     private String userId;
     private String roleId;
 
-    @Id
     @Column(name = "USER_ID")
+    @Id
     public String getUserId() {
         return userId;
     }
@@ -22,8 +21,8 @@ public class BSysUserRoleRel {
         this.userId = userId;
     }
 
-    @Id
     @Column(name = "ROLE_ID")
+    @Id
     public String getRoleId() {
         return roleId;
     }
@@ -37,7 +36,7 @@ public class BSysUserRoleRel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BSysUserRoleRel that = (BSysUserRoleRel) o;
+        SysUserRoleRelPK that = (SysUserRoleRelPK) o;
 
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
         if (roleId != null ? !roleId.equals(that.roleId) : that.roleId != null) return false;
