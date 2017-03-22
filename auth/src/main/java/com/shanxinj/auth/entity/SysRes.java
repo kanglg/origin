@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by kanglg on 2017/3/21.
+ * Created by kanglg on 2017/3/22.
  */
 @Entity
 @Table(name = "sys_res", schema = "origin")
@@ -14,10 +14,9 @@ public class SysRes {
     private String resType;
     private Byte avl;
     private String resNo;
-    private String upNo;
-    private String upNoPath;
     private String prmtDef;
     private Timestamp creTime;
+    private String resPath;
 
     @Id
     @Column(name = "RES_ID")
@@ -70,26 +69,6 @@ public class SysRes {
     }
 
     @Basic
-    @Column(name = "UP_NO")
-    public String getUpNo() {
-        return upNo;
-    }
-
-    public void setUpNo(String upNo) {
-        this.upNo = upNo;
-    }
-
-    @Basic
-    @Column(name = "UP_NO_PATH")
-    public String getUpNoPath() {
-        return upNoPath;
-    }
-
-    public void setUpNoPath(String upNoPath) {
-        this.upNoPath = upNoPath;
-    }
-
-    @Basic
     @Column(name = "PRMT_DEF")
     public String getPrmtDef() {
         return prmtDef;
@@ -109,6 +88,16 @@ public class SysRes {
         this.creTime = creTime;
     }
 
+    @Basic
+    @Column(name = "RES_PATH")
+    public String getResPath() {
+        return resPath;
+    }
+
+    public void setResPath(String resPath) {
+        this.resPath = resPath;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -121,10 +110,9 @@ public class SysRes {
         if (resType != null ? !resType.equals(sysRes.resType) : sysRes.resType != null) return false;
         if (avl != null ? !avl.equals(sysRes.avl) : sysRes.avl != null) return false;
         if (resNo != null ? !resNo.equals(sysRes.resNo) : sysRes.resNo != null) return false;
-        if (upNo != null ? !upNo.equals(sysRes.upNo) : sysRes.upNo != null) return false;
-        if (upNoPath != null ? !upNoPath.equals(sysRes.upNoPath) : sysRes.upNoPath != null) return false;
         if (prmtDef != null ? !prmtDef.equals(sysRes.prmtDef) : sysRes.prmtDef != null) return false;
         if (creTime != null ? !creTime.equals(sysRes.creTime) : sysRes.creTime != null) return false;
+        if (resPath != null ? !resPath.equals(sysRes.resPath) : sysRes.resPath != null) return false;
 
         return true;
     }
@@ -136,10 +124,9 @@ public class SysRes {
         result = 31 * result + (resType != null ? resType.hashCode() : 0);
         result = 31 * result + (avl != null ? avl.hashCode() : 0);
         result = 31 * result + (resNo != null ? resNo.hashCode() : 0);
-        result = 31 * result + (upNo != null ? upNo.hashCode() : 0);
-        result = 31 * result + (upNoPath != null ? upNoPath.hashCode() : 0);
         result = 31 * result + (prmtDef != null ? prmtDef.hashCode() : 0);
         result = 31 * result + (creTime != null ? creTime.hashCode() : 0);
+        result = 31 * result + (resPath != null ? resPath.hashCode() : 0);
         return result;
     }
 }
