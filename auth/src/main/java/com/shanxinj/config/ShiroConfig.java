@@ -87,6 +87,10 @@ public class ShiroConfig {
         filterMap.put("sysUser", sysUserFilter);
         shiroFilterFactoryBean.setFilters(filterMap);
         Map<String, String> filterChainDefinitionMap = Maps.newHashMap();
+        filterChainDefinitionMap.put("/css/**", "anon");
+        filterChainDefinitionMap.put("/img/**", "anon");
+        filterChainDefinitionMap.put("/js/**", "anon");
+        filterChainDefinitionMap.put("/plugins/**", "anon");
         filterChainDefinitionMap.put("/register", "anon");
         filterChainDefinitionMap.put("/login", "authc");
         filterChainDefinitionMap.put("/logout", "logout");

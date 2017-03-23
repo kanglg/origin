@@ -41,6 +41,6 @@ public class IndexController{
         logger.info("首页登陆...");
         model.addAttribute("user", user);
         model.addAttribute("processInstances", processInstances);
-        return "webapp/index";
+        return "webapp/starter";
     }
 }
