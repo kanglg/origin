@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/starter::head(~{},~{},~{this::script})">
+    <script>
+        /*<![CDATA[*/
+        $(function () {
+            $('#register').click(function () {
+                debugger;
+                $.ajax({
+                    type: 'post',
+                    url: '[[@{/register}]]',
+                    data: $('#register_form').serialize(),
+                    success: function () {
+                        $('#myModal').modal('hide');
+                    }
+                });
+            });
+        });
+        /*]]>*/
+    </script>
+</head>
+<body th:replace="fragments/starter::body(~{this::#content-title}, ~{this::#content})">
+<div id="content-title">
+    用户管理
+</div>
+<div id="content">
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="register_form" role="form" action="#" th:action="@{/register}" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">新增用户</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="username">用户名</label>
+                            <input type="text" class="form-control" id="username" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">密码</label>
+                            <input type="password" id="password" name="password" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="register" type="button" class="btn btn-primary">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <a href="#" class="btn btn-primary btn-block margin-bottom" data-toggle="modal" data-target="#myModal">新增用户</a>
+        <div class="box box-solid">
+            <div class="box-body no-padding">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox
+                        <span class="label label-primary pull-right">12</span></a></li>
+                    <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
+                    <li><a href="#"><i class="fa fa-file-text-o"></i> Drafts</a></li>
+                    <li><a href="#"><i class="fa fa-filter"></i> Junk <span class="label label-warning pull-right">65</span></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>
+                </ul>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <div class="box box-solid">
+            <div class="box-body">
+                <a href="#">绑定角色</a><br>
+                <a href="#">添加机构</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <h3 class="box-title">用户列表</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+                <table class="table table-striped">
+                    <tr>
+                        <th style="width: 10px">#</th>
+                        <th>Task</th>
+                        <th>Progress</th>
+                        <th style="width: 40px">Label</th>
+                    </tr>
+                    <tr>
+                        <td>1.</td>
+                        <td>Update software</td>
+                        <td>
+                            <div class="progress progress-xs">
+                                <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                            </div>
+                        </td>
+                        <td><span class="badge bg-red">55%</span></td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>Clean database</td>
+                        <td>
+                            <div class="progress progress-xs">
+                                <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
+                            </div>
+                        </td>
+                        <td><span class="badge bg-yellow">70%</span></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>Cron job running</td>
+                        <td>
+                            <div class="progress progress-xs progress-striped active">
+                                <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
+                            </div>
+                        </td>
+                        <td><span class="badge bg-light-blue">30%</span></td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td>Fix and squish bugs</td>
+                        <td>
+                            <div class="progress progress-xs progress-striped active">
+                                <div class="progress-bar progress-bar-success" style="width: 90%"></div>
+                            </div>
+                        </td>
+                        <td><span class="badge bg-green">90%</span></td>
+                    </tr>
+                    </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <nav aria-label="page">
+            <ul class="pagination no-margin pull-right">
+                <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">上一页</span></a></li>
+                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">2 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">3 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">4 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">5 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#" aria-label="next"><span>下一页</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+</body>
+</html>
