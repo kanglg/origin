@@ -1,4 +1,4 @@
-package com.shanxinj.utils;
+package com.shanxinj.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;

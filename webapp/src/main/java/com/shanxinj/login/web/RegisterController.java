@@ -3,6 +3,7 @@ package com.shanxinj.login.web;
 import com.shanxinj.auth.annotation.CurrentUser;
 import com.shanxinj.auth.entity.SysUser;
 import com.shanxinj.auth.service.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +33,10 @@ public class RegisterController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
-    public void create(String username, String password) {
+    public void create(String username, String password) throws Exception {
+        if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
+            throw new Exception("用户名或密码为空");
+        }
         SysUser user = new SysUser();
         user.setUsername(username);
         user.setPassword(password);

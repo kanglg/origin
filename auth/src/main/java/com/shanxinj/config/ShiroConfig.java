@@ -91,7 +91,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/img/**", "anon");
         filterChainDefinitionMap.put("/js/**", "anon");
         filterChainDefinitionMap.put("/plugins/**", "anon");
-        filterChainDefinitionMap.put("/register", "anon");
+        filterChainDefinitionMap.put("/error/**", "anon");
         filterChainDefinitionMap.put("/login", "authc");
         filterChainDefinitionMap.put("/logout", "logout");
         filterChainDefinitionMap.put("/**", "user,sysUser");

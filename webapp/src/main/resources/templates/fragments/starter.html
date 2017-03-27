@@ -22,13 +22,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
-    <link rel="stylesheet" href="../../static/css/skins/skin-blue.min.css" th:href="@{css/skins/skin-blue.min.css}">
-
+    <link rel="stylesheet" href="../../static/css/skins/skin-blue.min.css" th:href="@{/css/skins/skin-blue.min.css}">
+    <link rel="stylesheet" href="../../static/plugins/iconfont/iconfont.css" th:href="@{/plugins/iconfont/iconfont.css}">
     <link rel="stylesheet" href="../../static/plugins/bootstrap-table/bootstrap-table.css" th:href="@{/plugins/bootstrap-table/bootstrap-table.css}">
-    <!-- jQuery 2.2.3 -->
-    <script src="../../static/plugins/jQuery/jquery-2.2.3.min.js" th:src="@{/plugins/jQuery/jquery-2.2.3.min.js}"></script>
-    <th:block th:replace="${links}" />
-    <th:block th:replace="${scripts}" />
+    <link rel="stylesheet" href="../../static/plugins/toastr/toastr.min.css" th:href="@{/plugins/toastr/toastr.min.css}">
+    <th:block th:if="${links != null}" th:replace="${links}" />
+    <th:block th:if="${scripts != null}" th:replace="${scripts}" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -57,7 +56,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-blue sidebar-mini" th:fragment="body(title,content)">
+<body class="hold-transition skin-blue sidebar-mini" th:fragment="body(title,content,scripts)">
 <div class="wrapper">
 
     <!-- Main Header -->
@@ -66,7 +65,7 @@ desired effect
         <!-- Logo -->
         <a href="#" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><i class="fa fa-balance-scale"></i></span>
+            <span class="logo-mini"><i class="iconfont icon-xinyonghezuoshe" style="font-size: 1.5em;"></i></span>
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg" style="font-size: .7em;">案件线索和处罚信息管理系统</span>
         </a>
@@ -215,7 +214,7 @@ desired effect
                     </a>
                     <ul class="treeview-menu">
                         <li class="active">
-                            <a href="#" th:href="@{/users}"><i class="fa fa-circle-o"></i>用户管理</a>
+                            <a href="#" th:href="@{/auth/users}"><i class="fa fa-circle-o"></i>用户管理</a>
                         </li>
                         <li><a href="#"><i class="fa fa-circle-o"></i>角色管理</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i>授权资源管理</a></li>
@@ -341,16 +340,23 @@ desired effect
 <!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
+<!-- jQuery 2.2.3 -->
+<script src="../../static/plugins/jQuery/jquery-2.2.3.min.js" th:src="@{/plugins/jQuery/jquery-2.2.3.min.js}"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="../../static/plugins/bootstrap/js/bootstrap.min.js" th:src="@{/plugins/bootstrap/js/bootstrap.min.js}"></script>
 <!--bootstrap-table-->
 <script src="../../static/plugins/bootstrap-table/bootstrap-table.js" th:src="@{/plugins/bootstrap-table/bootstrap-table.js}"></script>
+<!--toastr-->
+<script src="../../static/plugins/toastr/toastr.min.js" th:src="@{/plugins/toastr/toastr.min.js}"></script>
+<!--confirm-->
+<script src="../../static/plugins/jquery-confirm/jquery.confirm.min.js" th:src="@{/plugins/jquery-confirm/jquery.confirm.min.js}"></script>
 <!-- AdminLTE App -->
 <script src="../../static/js/app.min.js" th:src="@{/js/app.min.js}"></script>
+
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
      fixed layout. -->
-
+<th:block th:replace="${scripts}" />
 </body>
 </html>

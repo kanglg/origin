@@ -3,7 +3,7 @@
 <head th:replace="fragments/starter::head(~{this::title},~{},~{})">
     <title>首页</title>
 </head>
-<body th:replace="fragments/starter::body(~{this::#content-title}, ~{this::#content})">
+<body th:replace="fragments/starter::body(~{this::#content-title}, ~{this::#content}, _)">
     <div id="content-title">
         Page Header
         <small>Optional description</small>
