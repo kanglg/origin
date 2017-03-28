@@ -14,7 +14,7 @@ import static org.springframework.data.domain.Sort.Direction;
  * 分页工具
  * Created by kanglg on 2017/3/24.
  */
-public class PageUtils {
+public final class PageUtils {
     public static PageRequest buildPageRequest(int pageNum, int pageSize, String sortType, String direction) {
         Sort sort = null;
         if (Strings.isNullOrEmpty(sortType)) {

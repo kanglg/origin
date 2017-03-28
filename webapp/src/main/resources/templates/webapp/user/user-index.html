@@ -39,22 +39,11 @@
         <div class="box box-solid">
             <div class="box-body no-padding">
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox
-                        <span class="label label-primary pull-right">12</span></a></li>
-                    <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
-                    <li><a href="#"><i class="fa fa-file-text-o"></i> Drafts</a></li>
-                    <li><a href="#"><i class="fa fa-filter"></i> Junk <span class="label label-warning pull-right">65</span></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>
+                    <li class="active"><a href="#" th:src="@{/auth/users}"><i class="fa fa-inbox"></i> 用户查看 </a></li>
+                    <li><a href="#" th:src="@{/auth/users}"><i class="fa fa-inbox"></i> 用户组管理 </a></li>
                 </ul>
             </div>
             <!-- /.box-body -->
-        </div>
-        <div class="box box-solid">
-            <div class="box-body">
-                <a href="#">绑定角色</a><br>
-                <a href="#">添加机构</a>
-            </div>
         </div>
     </div>
     <div class="col-md-9">
@@ -64,18 +53,18 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
-                <table class="table table-striped">
-                    <tr>
+                <table class="table table-striped" data-toggle="table">
+                    <tr data-toggle="table-head">
                         <th style="width: 10px">#</th>
                         <th>用户名</th>
-                        <th style="width: 120px"></th>
+                        <th style="width: 165px"></th>
                     </tr>
                     <!--/*@thymesVar id="users" type="java.util.List"*/-->
                     <tr th:each="user,iterStat:${users}">
                         <td th:text="${iterStat.count}">1.</td>
                         <!--suppress ThymeleafVariablesResolveInspection -->
                         <td th:text="${user.username}"></td>
-                        <td><span class="badge bg-blue">重置密码</span><span class="badge bg-red rm">删除</span></td>
+                        <td><a class="badge bg-blue">编辑</a> <a class="badge bg-blue">重置密码</a> <a class="badge bg-red rm">删除</a></td>
                     </tr>
                 </table>
             </div>
@@ -112,9 +101,19 @@
                 }
             });
         });
+        $('.rm').click(function () {
+            bootbox.confirm('是否删除', function () {
 
-        $('.rm').confirm();
+            });
+        });
     });
+
+
+    function loadData () {
+        $table = $('[data-toggle="table"]');
+        $('tr:gt(0)', $table).remove();
+
+    }
 </script>
 </body>
 </html>

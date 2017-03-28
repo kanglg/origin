@@ -184,7 +184,7 @@ desired effect
                     <!--/*@thymesVar id="user" type="com.shanxinj.auth.entity.SysUser"*/-->
                     <p th:text="${user.username}">Alexander Pierce</p>
                     <!-- Status -->
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <a href="#">管理员</a>
                 </div>
             </div>
 
@@ -249,16 +249,6 @@ desired effect
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-
-    <!-- Main Footer -->
-    <footer class="main-footer">
-        <!-- To the right -->
-        <div class="pull-right hidden-xs">
-            Anything you want
-        </div>
-        <!-- Default to the left -->
-        <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
-    </footer>
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -350,8 +340,13 @@ desired effect
 <script src="../../static/plugins/toastr/toastr.min.js" th:src="@{/plugins/toastr/toastr.min.js}"></script>
 <!--confirm-->
 <script src="../../static/plugins/jquery-confirm/jquery.confirm.min.js" th:src="@{/plugins/jquery-confirm/jquery.confirm.min.js}"></script>
+<script src="../../static/plugins/bootbox/bootbox.js" th:src="@{/plugins/bootbox/bootbox.js}"></script>
+<script>
+    bootbox.setLocale("zh_CN");
+</script>
 <!-- AdminLTE App -->
 <script src="../../static/js/app.min.js" th:src="@{/js/app.min.js}"></script>
+
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
