@@ -85,4 +85,9 @@ public class UserService {
     public List<SysUser> findAll() {
         return (List<SysUser>) userRepository.findAll();
     }
+
+    public void updateUser(SysUser user) {
+        userRepository.save(user);
+    }
+
 }
