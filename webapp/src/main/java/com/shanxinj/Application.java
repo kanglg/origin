@@ -15,6 +15,10 @@ import org.springframework.http.HttpStatus;
  * Created by kanglg on 2017/3/19.
  */
 @SpringBootApplication
+//@EnableJpaRepositories(
+//        basePackages = "com.shanxinj.**.repository",
+//        repositoryFactoryBeanClass = BaseRepositoryFactoryBean.class
+//)
 public class Application extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
