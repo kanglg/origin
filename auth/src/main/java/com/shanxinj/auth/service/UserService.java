@@ -90,4 +90,18 @@ public class UserService {
         userRepository.save(user);
     }
 
+//    public Page findUserWithPage() {
+//        PageRequest pageRequest = PageUtils.buildPageRequest(1, 10);
+//        return userRepository.findAll(new JPQLNamedQuery() {
+//            public Map<String, Object> getNamedParam() {
+//                Map<String, Object> params = Maps.newHashMap();
+//                params.put("username", "admin");
+//                return params;
+//            }
+//
+//            public String getJPQL() {
+//                return "select user from SysUser user where user.username=:username";
+//            }
+//        }, pageRequest);
+//    }
 }

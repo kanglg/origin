@@ -1,4 +1,4 @@
-package com.shanxinj.Repository;
+package com.shanxinj.repository;
 
 import java.util.Map;
 

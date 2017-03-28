@@ -1,11 +1,11 @@
-package com.shanxinj.Repository.impl;
+package com.shanxinj.repository.impl;
 
-import com.shanxinj.Repository.JPQLNamedQuery;
-import com.shanxinj.Repository.JPQLQueryExecutor;
+import com.shanxinj.repository.JPQLNamedQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,8 +14,9 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Map;
 
-@Component
-public class JPQLQueryExecutorImpl implements JPQLQueryExecutor {
+@Repository
+@Transactional(readOnly = true)
+public class JPQLQueryExecutorImpl {
     @PersistenceContext
     private EntityManager entityManager;
 
