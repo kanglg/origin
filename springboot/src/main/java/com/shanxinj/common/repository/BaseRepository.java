@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 公共repo接口
@@ -31,4 +32,8 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
      * @return page
      */
     <E> Page<E> findAll(JPQLNamedQuery query, Pageable pageable, Class<E> clazz);
+
+    List findAll(JPQLNamedQuery query);
+
+    <E> List<E> findAll(JPQLNamedQuery query, Class<E> clazz);
 }
