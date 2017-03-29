@@ -1,5 +1,7 @@
 package com.shanxinj.login.web;
 
+import com.shanxinj.auth.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,16 +19,16 @@ public class LoginController {
 //        subject.login(token);
 //        return "redirect:/index";
 //    }
-//    private final UserService userService;
-//
-//    @Autowired
-//    public LoginController(UserService userService) {
-//        this.userService = userService;
-//    }
+    private final UserService userService;
+
+    @Autowired
+    public LoginController(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String index() {
-//        userService.findUserWithPage();
+        userService.findUserWithPage();
         return "webapp/login";
     }
 }
