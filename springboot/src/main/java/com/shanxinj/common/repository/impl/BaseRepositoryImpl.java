@@ -44,13 +44,28 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
         this(JpaEntityInformationSupport.getEntityInformation(domainClass, em), em);
     }
 
+    public List findAll(JPQLNamedQuery query) {
+        String jpql = query.getJPQL();
+        Map<String, Object> params = query.getNamedParam();
+        Query q = em.createQuery(jpql);
+        if (null != params) {
+            for (String key : params.keySet()) {
+                Object param = params.get(key);
+                q.setParameter(key, param);
+            }
+        }
+        return q.getResultList();
+    }
+
     public Page<T> findAll(JPQLNamedQuery query, Pageable pageable) {
         String jpql = query.getJPQL();
         Map<String, Object> params = query.getNamedParam();
         Query q = em.createQuery(jpql);
-        for (String key : params.keySet()) {
-            Object param = params.get(key);
-            q.setParameter(key, param);
+        if (null != params) {
+            for (String key : params.keySet()) {
+                Object param = params.get(key);
+                q.setParameter(key, param);
+            }
         }
         q.setFirstResult(pageable.getPageNumber() * pageable.getPageSize());
         q.setMaxResults(pageable.getPageSize());
@@ -63,9 +78,11 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
         String jpql = query.getJPQL();
         Map<String, Object> params = query.getNamedParam();
         TypedQuery<E> q = em.createQuery(jpql, clazz);
-        for (String key : params.keySet()) {
-            Object param = params.get(key);
-            q.setParameter(key, param);
+        if (null != params) {
+            for (String key : params.keySet()) {
+                Object param = params.get(key);
+                q.setParameter(key, param);
+            }
         }
         q.setFirstResult(pageable.getPageNumber() * pageable.getPageSize());
         q.setMaxResults(pageable.getPageSize());
@@ -73,8 +90,20 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
         return new PageImpl<E>(list, pageable, getCount(jpql, params));
     }
 
-    private long getCount(String hql, Map<String, Object> params) {
+    public <E> List<E> findAll(JPQLNamedQuery query, Class<E> clazz) {
+        String jpql = query.getJPQL();
+        Map<String, Object> params = query.getNamedParam();
+        TypedQuery<E> q = em.createQuery(jpql, clazz);
+        if (null != params) {
+            for (String key : params.keySet()) {
+                Object param = params.get(key);
+                q.setParameter(key, param);
+            }
+        }
+        return q.getResultList();
+    }
 
+    private long getCount(String hql, Map<String, Object> params) {
         Session session = (Session) em.getDelegate();
         SessionFactoryImpl sessionFactory = (SessionFactoryImpl) session.getSessionFactory();
         QueryTranslatorImpl queryTranslator = new QueryTranslatorImpl(hql, hql, Collections.EMPTY_MAP, sessionFactory);
@@ -84,10 +113,12 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
         StringBuffer stb = new StringBuffer(1000);
         stb.append("select count(1) from (").append(sql).append(") t");
         Query query = em.createNativeQuery(stb.toString());
-        for (String key : params.keySet()) {
-            int[] locations = queryTranslator.getParameterTranslations().getNamedParameterSqlLocations(key);
-            for (int location : locations) {
-                query.setParameter(location + 1, params.get(key));
+        if (null != params) {
+            for (String key : params.keySet()) {
+                int[] locations = queryTranslator.getParameterTranslations().getNamedParameterSqlLocations(key);
+                for (int location : locations) {
+                    query.setParameter(location + 1, params.get(key));
+                }
             }
         }
         BigInteger integer = (BigInteger) query.getSingleResult();

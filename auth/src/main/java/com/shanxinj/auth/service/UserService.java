@@ -107,7 +107,7 @@ public class UserService {
             }
 
             public String getJPQL() {
-                return "select user from SysUser user where user.username=:username and user.username=:username order by user.creDate";
+                return "select user from SysUser user order by user.creDate";
             }
         }, pageRequest);
     }
