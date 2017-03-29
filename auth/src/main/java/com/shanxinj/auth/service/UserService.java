@@ -102,11 +102,12 @@ public class UserService {
         return userRepository.findAll(new JPQLNamedQuery() {
             public Map<String, Object> getNamedParam() {
                 Map<String, Object> params = Maps.newHashMap();
+                params.put("username", "admin");
                 return params;
             }
 
             public String getJPQL() {
-                return "select user from SysUser user";
+                return "select user from SysUser user where user.username=:username and user.username=:username order by user.creDate";
             }
         }, pageRequest);
     }
