@@ -1,7 +1,7 @@
 package com.shanxinj.user.service;
 
+import com.shanxinj.auth.repository.UserRepository;
 import com.shanxinj.common.BaseService;
-import com.shanxinj.user.repository.AuthUserRepository;
 import com.shanxinj.util.PageUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,15 +18,14 @@ import javax.transaction.Transactional;
 @Transactional
 public class AuthUserService extends BaseService {
     private final Logger logger = LoggerFactory.getLogger(AuthUserService.class);
-    private final AuthUserRepository authUserRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public AuthUserService(AuthUserRepository authUserRepository) {
-        this.authUserRepository = authUserRepository;
+    public AuthUserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     public Page findUsersWithPage(int pageNum, int pageSize) {
-        logger.info("findAll");
-        return authUserRepository.findAll(PageUtils.buildPageRequest(pageNum, pageSize));
+        return userRepository.findAll(PageUtils.buildPageRequest(1,10, "creDate", "DESC"));
     }
 }

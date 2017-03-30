@@ -28,7 +28,7 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String index() {
-        userService.findUserWithPage();
+//        userService.findUserWithPage();
         return "webapp/login";
     }
 }

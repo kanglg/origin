@@ -37,13 +37,25 @@
     <div class="col-md-3">
         <a href="#" class="btn btn-primary btn-block margin-bottom" data-toggle="modal" data-target="#myModal">新增用户</a>
         <div class="box box-solid">
-            <div class="box-body no-padding">
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#" th:src="@{/auth/users}"><i class="fa fa-inbox"></i> 用户查看 </a></li>
-                    <li><a href="#" th:src="@{/auth/users}"><i class="fa fa-inbox"></i> 用户组管理 </a></li>
-                </ul>
+            <div class="box-header with-border">
+                <h3 class="box-title">搜索</h3>
             </div>
-            <!-- /.box-body -->
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="search-username">用户名</label>
+                    <input type="text" class="form-control" id="search-username">
+                </div>
+                <div class="form-group">
+                    <label for="search-role">角色</label>
+                    <select name="" id="search-role" class="form-control">
+                        <option></option>
+                        <option>admin</option>
+                    </select>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button type="button" class="btn btn-sm btn-primary btn-block">搜索</button>
+            </div>
         </div>
     </div>
     <div class="col-md-9">
@@ -64,7 +76,20 @@
                         <td th:text="${iterStat.count}">1.</td>
                         <!--suppress ThymeleafVariablesResolveInspection -->
                         <td th:text="${user.username}"></td>
-                        <td><a class="badge bg-blue">编辑</a> <a class="badge bg-blue">重置密码</a> <a class="badge bg-red rm">删除</a></td>
+                        <td style="padding:6px; text-align: right;">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary btn-xs">编辑</button>
+                                <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">密码重置</a></li>
+                                </ul>
+                            </div>
+                            <button class="btn btn-danger btn-xs rm" th:onclick="|delUser('${user.userId}')|">删除</button>
+                        </td>
+                        <!--<td><a class="badge bg-blue">编辑</a> <a class="badge bg-blue">重置密码</a> <a class="badge bg-red rm">删除</a></td>-->
                     </tr>
                 </table>
             </div>
@@ -87,24 +112,20 @@
 <script th:inline="javascript">
     $(function () {
         $('#register').click(function () {
-            debugger;
             $.ajax({
                 type: 'post',
                 url: /*[[@{/register}]]*/ '',
                 data: $('#register_form').serialize(),
+                beforeSend: function () {
+                    Pace.restart();
+                },
                 success: function () {
                     toastr.success('成功新增用户！');
                     $('#myModal').modal('hide');
                 },
                 error: function (e) {
-                    debugger;
                     toastr.error('处理失败！' + e.responseJSON.message);
                 }
-            });
-        });
-        $('.rm').click(function () {
-            bootbox.confirm('是否删除', function () {
-
             });
         });
     });
@@ -113,7 +134,22 @@
     function loadData () {
         $table = $('[data-toggle="table"]');
         $('tr:gt(0)', $table).remove();
+    }
 
+    function delUser(userId) {
+        var url = /*[[@{/user/}]]*/ '';
+        console.log(url + userId);
+        bootbox.confirm('是否删除', function (flag) {
+            if (flag) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: url + userId,
+                    success: function () {
+                        toastr.success('成功删除用户');
+                    }
+                });
+            }
+        });
     }
 </script>
 </body>

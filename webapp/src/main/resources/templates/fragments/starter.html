@@ -1,31 +1,19 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html xmlns:th="http://www.thymeleaf.org" th:fragment="starter(title,links,scripts)">
 <head th:fragment="head(title,links,scripts)">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title th:replace="${title}">线索和处罚信息管理系统</title>
-    <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="../../static/plugins/bootstrap/css/bootstrap.css" th:href="@{/plugins/bootstrap/css/bootstrap.css}">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="../../static/plugins/font-awesome/css/font-awesome.min.css" th:href="@{/plugins/font-awesome/css/font-awesome.min.css}">
-    <!-- Ionicons -->
     <link rel="stylesheet" href="../../static/plugins/Ionicons/css/ionicons.min.css" th:href="@{/plugins/Ionicons/css/ionicons.min.css}">
-    <!-- Theme style -->
     <link rel="stylesheet" href="../../static/css/AdminLTE.min.css" th:href="@{/css/AdminLTE.min.css}">
-    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-          page. However, you can choose any other skin. Make sure you
-          apply the skin class to the body tag so the changes take effect.
-    -->
     <link rel="stylesheet" href="../../static/css/skins/skin-blue.min.css" th:href="@{/css/skins/skin-blue.min.css}">
     <link rel="stylesheet" href="../../static/plugins/iconfont/iconfont.css" th:href="@{/plugins/iconfont/iconfont.css}">
     <link rel="stylesheet" href="../../static/plugins/bootstrap-table/bootstrap-table.css" th:href="@{/plugins/bootstrap-table/bootstrap-table.css}">
     <link rel="stylesheet" href="../../static/plugins/toastr/toastr.min.css" th:href="@{/plugins/toastr/toastr.min.css}">
+    <link rel="stylesheet" href="../../static/plugins/pace/pace.min.css" th:href="@{/plugins/pace/pace.min.css}">
     <th:block th:if="${links != null}" th:replace="${links}" />
     <th:block th:if="${scripts != null}" th:replace="${scripts}" />
 
@@ -36,26 +24,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
 <body class="hold-transition skin-blue sidebar-mini" th:fragment="body(title,content,scripts)">
 <div class="wrapper">
 
@@ -344,14 +312,11 @@ desired effect
 <script>
     bootbox.setLocale("zh_CN");
 </script>
+<!-- PACE -->
+<script src="../../static/plugins/pace/pace.min.js" th:src="@{/plugins/pace/pace.min.js}"></script>
 <!-- AdminLTE App -->
 <script src="../../static/js/app.min.js" th:src="@{/js/app.min.js}"></script>
 
-
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. Slimscroll is required when using the
-     fixed layout. -->
 <th:block th:replace="${scripts}" />
 </body>
 </html>

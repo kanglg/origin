@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/testm1490840672670" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="m1490840672670" name="" targetNamespace="http://www.activiti.org/testm1490840672670" typeLanguage="http://www.w3.org/2001/XMLSchema">
+  <error id="ERR_1"/>
+  <error id="ERR_2"/>
+  <error id="ERR_3"/>
+  <process id="process1" isClosed="false" isExecutable="true" name="process1" processType="None">
+    <startEvent id="theStart" name="开始"/>
+    <userTask activiti:assignee="#{userId}" activiti:exclusive="true" id="task1" name="填写信息">
+      <extensionElements>
+        <activiti:taskListener event="create"/>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="_4" sourceRef="theStart" targetRef="task1"/>
+    <endEvent id="theEnd" name="结束"/>
+    <sequenceFlow id="_2" sourceRef="task1" targetRef="theEnd"/>
+  </process>
+  <bpmndi:BPMNDiagram documentation="background=#3C3F41;count=1;horizontalcount=1;orientation=0;width=842.4;height=1195.2;imageableWidth=832.4;imageableHeight=1185.2;imageableX=5.0;imageableY=5.0" id="Diagram-_1" name="New Diagram">
+    <bpmndi:BPMNPlane bpmnElement="process1">
+      <bpmndi:BPMNShape bpmnElement="theStart" id="Shape-theStart">
+        <dc:Bounds height="32.0" width="32.0" x="255.0" y="45.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="task1" id="Shape-task1">
+        <dc:Bounds height="55.0" width="85.0" x="230.0" y="160.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="theEnd" id="Shape-theEnd">
+        <dc:Bounds height="32.0" width="32.0" x="255.0" y="270.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_2" id="BPMNEdge__2" sourceElement="task1" targetElement="theEnd">
+        <di:waypoint x="271.0" y="215.0"/>
+        <di:waypoint x="271.0" y="270.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4" id="BPMNEdge__4" sourceElement="theStart" targetElement="task1">
+        <di:waypoint x="271.0" y="77.0"/>
+        <di:waypoint x="271.0" y="160.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

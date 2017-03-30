@@ -1,6 +1,5 @@
 package com.shanxinj;
 
-import com.shanxinj.common.repository.BaseRepositoryFactoryBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -9,7 +8,6 @@ import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomi
 import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -17,10 +15,6 @@ import org.springframework.http.HttpStatus;
  * Created by kanglg on 2017/3/19.
  */
 @SpringBootApplication
-@EnableJpaRepositories(
-        basePackages = "com.shanxinj.**.repository",
-        repositoryFactoryBeanClass = BaseRepositoryFactoryBean.class
-)
 public class Application extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {

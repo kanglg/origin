@@ -9,4 +9,5 @@ import org.springframework.data.repository.CrudRepository;
  * Created by kanglg on 2017/3/28.
  */
 public interface UserRoleRepository extends CrudRepository<SysUserRoleRel, SysUserRoleRelPK> {
+    void deleteByUserId(String userId);
 }

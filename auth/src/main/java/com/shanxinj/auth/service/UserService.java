@@ -6,6 +6,7 @@ import com.shanxinj.auth.entity.SysUser;
 import com.shanxinj.auth.repository.ResRepository;
 import com.shanxinj.auth.repository.RoleRepository;
 import com.shanxinj.auth.repository.UserRepository;
+import com.shanxinj.auth.repository.UserRoleRepository;
 import com.shanxinj.common.repository.JPQLNamedQuery;
 import com.shanxinj.util.PageUtils;
 import com.shanxinj.utils.EndecryptUtils;
@@ -14,8 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
@@ -31,12 +32,14 @@ public class UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final ResRepository resRepository;
+    private final UserRoleRepository userRoleRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, RoleRepository roleRepository, ResRepository resRepository) {
+    public UserService(UserRepository userRepository, RoleRepository roleRepository, ResRepository resRepository, UserRoleRepository userRoleRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.resRepository = resRepository;
+        this.userRoleRepository = userRoleRepository;
     }
 
     /**
@@ -110,5 +113,10 @@ public class UserService {
                 return "select user from SysUser user order by user.creDate";
             }
         }, pageRequest);
+    }
+
+    public void removeUser(String userId) {
+        userRepository.delete(userId);
+        userRoleRepository.deleteByUserId(userId);
     }
 }
