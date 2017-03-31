@@ -11,9 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
-import org.springframework.data.jpa.repository.support.JpaEntityInformationSupport;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
-import org.springframework.data.repository.NoRepositoryBean;
 import org.thymeleaf.util.StringUtils;
 
 import javax.persistence.EntityManager;
@@ -30,7 +28,6 @@ import java.util.Map;
  * Created by kanglg on 2017/3/28.
  */
 @SuppressWarnings("SpringJavaAutowiringInspection")
-@NoRepositoryBean
 public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements BaseRepository<T, ID> {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private final EntityManager em;
@@ -38,10 +35,6 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
     public BaseRepositoryImpl(JpaEntityInformation<T, ?> entityInformation, EntityManager entityManager) {
         super(entityInformation, entityManager);
         this.em = entityManager;
-    }
-
-    public BaseRepositoryImpl(Class<T> domainClass, EntityManager em) {
-        this(JpaEntityInformationSupport.getEntityInformation(domainClass, em), em);
     }
 
     public List findAll(JPQLNamedQuery query) {

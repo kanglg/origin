@@ -2,9 +2,8 @@ package com.shanxinj.common.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
  * Created by kanglg on 2017/3/28.
  */
 @NoRepositoryBean
-public interface BaseRepository<T, ID extends Serializable> extends JpaRepository<T, ID>, JpaSpecificationExecutor<T> {
+public interface BaseRepository<T, ID extends Serializable> extends PagingAndSortingRepository<T, ID>{
     /**
      * jpql分页命名查询
      * @param query 查询接口

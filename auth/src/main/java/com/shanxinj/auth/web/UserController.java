@@ -41,6 +41,7 @@ public class UserController {
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public Page<SysUser> list(@PageableDefault(sort = "creDate", direction = Sort.Direction.DESC) Pageable pageable) {
+        userService.findUserWithPageTest(pageable);
         return userService.findUserWithPage(pageable);
     }
 }
