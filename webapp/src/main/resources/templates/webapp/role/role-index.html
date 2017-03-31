@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/starter::head(~{this::title},_,_)">
+    <title>角色管理</title>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <header th:replace="fragments/starter::header"></header>
+    <aside th:replace="fragments/starter::sidebar"></aside>
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>角色管理</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 授权</a></li>
+                <li class="active">角色管理</li>
+            </ol>
+        </section>
+        <section class="content">
+        </section>
+    </div>
+</div>
+<th:block th:replace="fragments/starter::scripts"/>
+</body>
+</html>

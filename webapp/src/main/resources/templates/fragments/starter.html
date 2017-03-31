@@ -28,7 +28,7 @@
 <div class="wrapper">
 
     <!-- Main Header -->
-    <header class="main-header">
+    <header class="main-header" th:fragment="header">
 
         <!-- Logo -->
         <a href="#" class="logo">
@@ -138,7 +138,7 @@
         </nav>
     </header>
     <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar">
+    <aside class="main-sidebar" th:fragment="sidebar">
 
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
@@ -156,26 +156,18 @@
                 </div>
             </div>
 
-            <!-- search form (Optional) -->
-            <form action="#" method="get" class="sidebar-form">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-                </div>
-            </form>
-            <!-- /.search form -->
-
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu">
-                <li class="header">系统管理</li>
+                <li class="header">菜单</li>
                 <!-- Optionally, you can add icons to the links -->
                 <!--<li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>-->
-                <!--<li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>-->
-                <li class="treeview active">
-                    <a href="#"><i class="fa fa-link"></i> <span>授权管理</span>
+                <li class="active">
+                    <a href="#" th:href="@{/}">
+                        <i class="fa fa-th"></i> <span>首页</span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-lock"></i> <span>授权管理</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -184,7 +176,7 @@
                         <li class="active">
                             <a href="#" th:href="@{/auth/users}"><i class="fa fa-circle-o"></i>用户管理</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i>角色管理</a></li>
+                        <li><a href="#" th:href="@{/auth/role}"><i class="fa fa-circle-o"></i>角色管理</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i>授权资源管理</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i>机构管理</a></li>
                     </ul>
@@ -296,26 +288,25 @@
     <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-
-<!-- REQUIRED JS SCRIPTS -->
-<!-- jQuery 2.2.3 -->
-<script src="../../static/plugins/jQuery/jquery-2.2.3.min.js" th:src="@{/plugins/jQuery/jquery-2.2.3.min.js}"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="../../static/plugins/bootstrap/js/bootstrap.min.js" th:src="@{/plugins/bootstrap/js/bootstrap.min.js}"></script>
-<!--bootstrap-table-->
-<script src="../../static/plugins/bootstrap-table/bootstrap-table.js" th:src="@{/plugins/bootstrap-table/bootstrap-table.js}"></script>
-<!--toastr-->
-<script src="../../static/plugins/toastr/toastr.min.js" th:src="@{/plugins/toastr/toastr.min.js}"></script>
-<!--confirm-->
-<script src="../../static/plugins/jquery-confirm/jquery.confirm.min.js" th:src="@{/plugins/jquery-confirm/jquery.confirm.min.js}"></script>
-<script src="../../static/plugins/bootbox/bootbox.js" th:src="@{/plugins/bootbox/bootbox.js}"></script>
-<script>
-    bootbox.setLocale("zh_CN");
-</script>
-<!-- PACE -->
-<script src="../../static/plugins/pace/pace.min.js" th:src="@{/plugins/pace/pace.min.js}"></script>
-<!-- AdminLTE App -->
-<script src="../../static/js/app.min.js" th:src="@{/js/app.min.js}"></script>
+<th:block th:fragment="scripts">
+    <!-- REQUIRED JS SCRIPTS -->
+    <!-- jQuery 2.2.3 -->
+    <script src="../../static/plugins/jQuery/jquery-2.2.3.min.js" th:src="@{/plugins/jQuery/jquery-2.2.3.min.js}"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="../../static/plugins/bootstrap/js/bootstrap.min.js" th:src="@{/plugins/bootstrap/js/bootstrap.min.js}"></script>
+    <!--bootstrap-table-->
+    <script src="../../static/plugins/bootstrap-table/bootstrap-table.js" th:src="@{/plugins/bootstrap-table/bootstrap-table.js}"></script>
+    <!--toastr-->
+    <script src="../../static/plugins/toastr/toastr.min.js" th:src="@{/plugins/toastr/toastr.min.js}"></script>
+    <!--confirm-->
+    <script src="../../static/plugins/jquery-confirm/jquery.confirm.min.js" th:src="@{/plugins/jquery-confirm/jquery.confirm.min.js}"></script>
+    <script src="../../static/plugins/bootbox/bootbox.js" th:src="@{/plugins/bootbox/bootbox.js}"></script>
+    <!-- PACE -->
+    <script src="../../static/plugins/pace/pace.min.js" th:src="@{/plugins/pace/pace.min.js}"></script>
+    <!-- AdminLTE App -->
+    <script src="../../static/js/config.js" th:src="@{/js/config.js}"></script>
+    <script src="../../static/js/app.min.js" th:src="@{/js/app.min.js}"></script>
+</th:block>
 
 <th:block th:replace="${scripts}" />
 </body>
