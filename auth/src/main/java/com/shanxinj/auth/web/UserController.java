@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Set;
-
 /**
  * User
  * Created by kanglg on 2017/3/8.
@@ -28,10 +25,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public List index() {
-        Set set = userService.findPermissions("admin");
-        return userService.findAll();
+    @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
+    public SysUser index(@PathVariable("userId") SysUser sysUser) {
+        return sysUser;
     }
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
