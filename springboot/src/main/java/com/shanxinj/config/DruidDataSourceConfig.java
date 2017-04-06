@@ -48,6 +48,7 @@ public class DruidDataSourceConfig {
     @Bean
     public DataSource druidDataSource() {
         DruidDataSource druidDataSource = new DruidDataSource();
+        druidDataSource.setDriverClassName(properties.getDriverClassName());
         druidDataSource.setUrl(properties.getUrl());
         druidDataSource.setUsername(properties.getUsername());
         druidDataSource.setPassword(properties.getPassword());
@@ -55,6 +56,8 @@ public class DruidDataSourceConfig {
         druidDataSource.setMinIdle(properties.getMinIdle());
         druidDataSource.setMaxActive(properties.getMaxActive());
         druidDataSource.setValidationQuery(properties.getValidationQuery());
+//        druidDataSource.setTestWhileIdle(true);
+//        druidDataSource.setTimeBetweenEvictionRunsMillis(600000);
         try {
             LOGGER.debug("Setting 'application.properties' into druid");
             druidDataSource.setFilters("stat, wall");

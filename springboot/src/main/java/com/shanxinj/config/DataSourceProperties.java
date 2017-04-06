@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Configuration;
 public class DataSourceProperties {
     final static String DATASOURCE_PREFIX = "spring.datasource";
 
+    private String driverClassName;
+
     private String url;
 
     private String username;
@@ -25,6 +27,14 @@ public class DataSourceProperties {
     private int minIdle;
 
     private String validationQuery;
+
+    public String getDriverClassName() {
+        return driverClassName;
+    }
+
+    public void setDriverClassName(String driverClassName) {
+        this.driverClassName = driverClassName;
+    }
 
     public String getUrl() {
         return url;
